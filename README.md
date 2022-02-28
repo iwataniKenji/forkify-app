@@ -1,5 +1,5 @@
 <section align="center">
-    <img width="688,5px" height="225px" src="./src/img/logo.png" />
+    <img width="596,7px" height="195px" src="./src/img/logo.png" />
 </section>
 
 ---
