@@ -73,6 +73,7 @@ $ npm start
 - [x] HTML
 - [x] CSS
 - [x] JavaScript
+- [x] Forkify API
 - [x] Parcel Bundler
 - [x] Core-js
 - [x] Regenerator-runtime
