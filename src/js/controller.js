@@ -23,7 +23,7 @@ const controlRecipes = async function () {
     // 2 - rendering recipe
     recipeView.render(model.state.recipe);
   } catch (err) {
-    console.log(err);
+    recipeView.renderError()
   }
 };
 
@@ -31,3 +31,5 @@ const init = function () {
   recipeView.addHandlerRender(controlRecipes);
 };
 init();
+// recipeView.addHandlerRender -> função da classe importada
+// controlRecipes -> função como argumento

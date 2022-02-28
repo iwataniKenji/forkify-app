@@ -53,7 +53,6 @@ $ npm install
 
 # Initialize and open local host
 $ npm start
-
 ```
 
 ---
