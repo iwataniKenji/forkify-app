@@ -66,6 +66,8 @@ $ npm start
 - [x] Error and success messages
 - [x] Search bar and results
 - [X] Pagination
+- [X] Updates recipe servings
+- [ ] Bookmarks recipes
 
 ---
 
