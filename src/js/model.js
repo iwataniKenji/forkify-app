@@ -90,6 +90,15 @@ export const addBookmark = function (recipe) {
   // add bookmark
   state.bookmarks.push(recipe);
 
-  // mark current recipe as bookmark
+  // mark current recipe as bookmarked
   if (recipe.id === state.recipe.id) state.recipe.bookmarked = true; // nova propriedade no objeto da receita
+};
+
+export const deleteBookmark = function (id) {
+  // delete bookmark
+  const index = state.bookmarks.findIndex(el => el.id === id); // index = id da receita que irá ser removida
+  state.bookmarks.splice(index, 1);
+
+  // mark current recipe as not bookmarked
+  if (id === state.recipe.id) state.recipe.bookmarked = false;
 };

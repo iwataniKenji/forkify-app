@@ -72,9 +72,12 @@ const controlServings = function (newServings) {
 
 // quando clicar no botão de bookmark
 const controlAddBookmark = function () {
-  model.addBookmark(model.state.recipe); // adiciona receita atual no bookmark 
+  // adiciona ou apaga o bookmark
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  else model.deleteBookmark(model.state.recipe.id);
+
   recipeView.update(model.state.recipe); // renderiza só a mudança
-}
+};
 
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
