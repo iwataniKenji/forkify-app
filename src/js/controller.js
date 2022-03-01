@@ -63,8 +63,9 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // update the recipe view
-  recipeView.render(model.state.recipe);
-}
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
+};
 
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
@@ -73,4 +74,3 @@ const init = function () {
   paginationView.addHandlerClick(controlPagination); // inicia possibilidade de receber click
 };
 init();
-
