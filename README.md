@@ -65,7 +65,7 @@ $ npm start
 - [x] Loads spinner
 - [x] Error and success messages
 - [x] Search bar and results
-- [ ] Pagination
+- [X] Pagination
 
 ---
 
