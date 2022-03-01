@@ -52,7 +52,7 @@ export const loadSearchResults = async function (query) {
         image: rec.image_url,
       };
     });
-    console.log(state.search.results);
+    state.search.page = 1;
   } catch (err) {
     console.error(`${err}`);
     throw err;
@@ -69,7 +69,7 @@ export const getSearchResultsPage = function (page = state.search.page) {
   return state.search.results.slice(start, end);
 };
 
-export const updateServings = function (newServings) {  
+export const updateServings = function (newServings) {
   state.recipe.ingredients.forEach(ing => {
     ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
     // novo = antiga qtd * nova porção / antiga porção

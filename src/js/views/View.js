@@ -17,20 +17,19 @@ export default class View {
     this._data = data;
     const newMarkup = this._generateMarkup();
 
-    const newDOM = document.createRange().createContextualFragment(newMarkup); // convert to dom node objects
-    const newElements = Array.from(newDOM.querySelectorAll('*'));
-    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+    const newDOM = document.createRange().createContextualFragment(newMarkup); // converte a string em dom virtual
+    const newElements = Array.from(newDOM.querySelectorAll('*')); // array de todos os elementos do dom virtual
+    const curElements = Array.from(this._parentElement.querySelectorAll('*')); // array de todos os elementos do dom
 
     newElements.forEach((newEl, i) => {
-      const curEl = curElements[i];
-      // console.log(curEl, newEl.isEqualNode(curEl));
+      const curEl = curElements[i]; // guarda elemento original no mesmo índice
 
       // updates changed text
       if (
         !newEl.isEqualNode(curEl) &&
         newEl.firstChild?.nodeValue.trim() !== ''
       ) {
-        curEl.textContent = newEl.textContent;
+        curEl.textContent = newEl.textContent; // se for diferente && se não for vazio -> guarda valor no dom original
       }
 
       if (!newEl.isEqualNode(curEl))
