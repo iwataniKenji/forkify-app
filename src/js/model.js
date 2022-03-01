@@ -61,10 +61,19 @@ export const loadSearchResults = async function (query) {
 
 export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
-  
+
   const start = (page - 1) * state.search.resultsPerPage; // 0
   const end = page * state.search.resultsPerPage; // 9
 
   // retorna 10 resultados
-  return state.search.results.slice(start, end)
-}
+  return state.search.results.slice(start, end);
+};
+
+export const updateServings = function (newServings) {  
+  state.recipe.ingredients.forEach(ing => {
+    ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
+    // novo = antiga qtd * nova porção / antiga porção
+  });
+
+  state.recipe.servings = newServings;
+};

@@ -57,9 +57,20 @@ const controlPagination = function (goToPage) {
   paginationView.render(model.state.search);
 };
 
+// chamado quando usuário clica no botão "aumentar ou diminuir porção"
+const controlServings = function (newServings) {
+  // update the recipe servings (in the state)
+  model.updateServings(newServings);
+
+  // update the recipe view
+  recipeView.render(model.state.recipe);
+}
+
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination); // inicia possibilidade de receber click
 };
 init();
+
