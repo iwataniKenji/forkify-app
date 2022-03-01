@@ -70,9 +70,16 @@ const controlServings = function (newServings) {
   recipeView.update(model.state.recipe);
 };
 
+// quando clicar no botão de bookmark
+const controlAddBookmark = function () {
+  model.addBookmark(model.state.recipe); // adiciona receita atual no bookmark 
+  recipeView.update(model.state.recipe); // renderiza só a mudança
+}
+
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
+  recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination); // inicia possibilidade de receber click
 };
