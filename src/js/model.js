@@ -86,8 +86,8 @@ export const updateServings = function (newServings) {
 };
 
 const persistBookmarks = function () {
-  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks))
-}
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+};
 
 // recebe receita e define como favorito
 export const addBookmark = function (recipe) {
@@ -111,13 +111,46 @@ export const deleteBookmark = function (id) {
   persistBookmarks();
 };
 
-const init = function() {
+const init = function () {
   const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage); // if storage ins't empty -> covert string to object -> send to state
-}
+};
 init();
 
 const clearBookmarks = function () {
   localStorage.clear('bookmarks');
-}
+};
 // clearBookmarks();
+
+export const uploadRecipe = async function (newRecipe) {
+  try {
+    const ingredients = Object.entries(newRecipe)
+      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '') // deve iniciar com ingredient e não ter valor vazio
+      .map(ing => {
+        const ingArr = ing[1].replaceAll(' ', '').split(',');
+        // replaceAll -> tira espaço caso haja
+        // split -> separa elemento em 3 strings
+        if (ingArr.length !== 3)
+          throw new Error(
+            'Wrong ingredient format! Please use the correct format :)'
+          );
+        const [quantity, unit, description] = ingArr; // guardar em constantes separadas
+        return { quantity: quantity ? +quantity : null, unit, description };
+      });
+
+    // saving new recipe's data
+    const recipe = {
+      title: newRecipe.title,
+      source_url: newRecipe.sourceUrl,
+      image_url: newRecipe.image,
+      publisher: newRecipe.publisher,
+      cooking_time: +newRecipe.cookingTime,
+      servings: +newRecipe.servings,
+      ingredients,
+    };
+
+    console.log(recipe);
+  } catch (err) {
+    throw err;
+  }
+};
