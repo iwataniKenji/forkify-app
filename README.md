@@ -67,7 +67,7 @@ $ npm start
 - [x] Search bar and results
 - [X] Pagination
 - [X] Updates recipe servings
-- [ ] Bookmarks recipes
+- [X] Bookmarks recipes
 
 ---
 
