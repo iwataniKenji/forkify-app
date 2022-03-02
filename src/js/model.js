@@ -110,3 +110,14 @@ export const deleteBookmark = function (id) {
 
   persistBookmarks();
 };
+
+const init = function() {
+  const storage = localStorage.getItem('bookmarks');
+  if (storage) state.bookmarks = JSON.parse(storage); // if storage ins't empty -> covert string to object -> send to state
+}
+init();
+
+const clearBookmarks = function () {
+  localStorage.clear('bookmarks');
+}
+// clearBookmarks();
