@@ -68,6 +68,7 @@ $ npm start
 - [X] Pagination
 - [X] Updates recipe servings
 - [X] Bookmarks recipes
+- [X] Local storage usage
 
 ---
 
