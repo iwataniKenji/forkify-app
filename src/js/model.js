@@ -24,18 +24,17 @@ const createRecipeObject = function (data) {
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
-    ...(recipe.key && {key: recipe.key}), // curto-circuito
-};
+    ...(recipe.key && { key: recipe.key }), // short circuit
+  };
 };
 
-// não retorna nada, mas muda state
+// return nothing but change the state
 export const loadRecipe = async function (id) {
   try {
     const data = await AJAX(`${API_URL}${id}?key=${KEY}`);
     state.recipe = createRecipeObject(data);
 
     if (state.bookmarks.some(bookmark => bookmark.id === id))
-      // caso algum bookmark possuir o id
       state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
 
@@ -49,19 +48,19 @@ export const loadRecipe = async function (id) {
 
 export const loadSearchResults = async function (query) {
   try {
-    state.search.query = query; // pesquisa pizza -> guarda no state
+    state.search.query = query; // search pizza -> save on state
 
-    const data = await AJAX(`${API_URL}?search=${query}&key=${KEY}`); // lista de receitas + pesquisa de pizza
+    const data = await AJAX(`${API_URL}?search=${query}&key=${KEY}`); // recipe list + pizza search
     console.log(data);
 
-    // lista de receitas -> retorna novos objetos -> guarda no state
+    // recipes loop -> return new objects -> save on state
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,
         title: rec.title,
         publisher: rec.publisher,
         image: rec.image_url,
-        ...(rec.key && {key: rec.key}),
+        ...(rec.key && { key: rec.key }),
       };
     });
     state.search.page = 1;
@@ -74,17 +73,17 @@ export const loadSearchResults = async function (query) {
 export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
 
-  const start = (page - 1) * state.search.resultsPerPage; // 0
-  const end = page * state.search.resultsPerPage; // 9
+  const start = (page - 1) * state.search.resultsPerPage;
+  const end = page * state.search.resultsPerPage;
 
-  // retorna 10 resultados
+  // return 10 results
   return state.search.results.slice(start, end);
 };
 
 export const updateServings = function (newServings) {
   state.recipe.ingredients.forEach(ing => {
     ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
-    // novo = antiga qtd * nova porção / antiga porção
+    // new  = old qtd * new portion / old portion
   });
 
   state.recipe.servings = newServings;
@@ -94,7 +93,6 @@ const persistBookmarks = function () {
   localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
 };
 
-// recebe receita e define como favorito
 export const addBookmark = function (recipe) {
   // add bookmark
   state.bookmarks.push(recipe);
@@ -107,7 +105,7 @@ export const addBookmark = function (recipe) {
 
 export const deleteBookmark = function (id) {
   // delete bookmark
-  const index = state.bookmarks.findIndex(el => el.id === id); // index = id da receita que irá ser removida
+  const index = state.bookmarks.findIndex(el => el.id === id);
   state.bookmarks.splice(index, 1);
 
   // mark current recipe as not bookmarked
@@ -118,7 +116,7 @@ export const deleteBookmark = function (id) {
 
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
-  if (storage) state.bookmarks = JSON.parse(storage); // if storage ins't empty -> covert string to object -> send to state
+  if (storage) state.bookmarks = JSON.parse(storage);
 };
 init();
 
@@ -130,16 +128,14 @@ const clearBookmarks = function () {
 export const uploadRecipe = async function (newRecipe) {
   try {
     const ingredients = Object.entries(newRecipe)
-      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '') // deve iniciar com ingredient e não ter valor vazio
+      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '') // shouldn't be empty and start with "ingredient"
       .map(ing => {
         const ingArr = ing[1].split(',').map(el => el.trim());
-        // replaceAll -> tira espaço caso haja
-        // split -> separa elemento em 3 strings
         if (ingArr.length !== 3)
           throw new Error(
             'Wrong ingredient format! Please use the correct format :)'
           );
-        const [quantity, unit, description] = ingArr; // guardar em constantes separadas
+        const [quantity, unit, description] = ingArr;
         return { quantity: quantity ? +quantity : null, unit, description };
       });
 

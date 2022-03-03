@@ -10,15 +10,11 @@ import addRecipeView from './views/addRecipeView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
-
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
 
-    if (!id) return; // guard clause se não houver #???
+    if (!id) return; // guard clause
     recipeView.renderSpinner();
 
     // 1 - update results view to mark selected search result
@@ -43,13 +39,13 @@ const controlSearchResults = async function () {
 
     // 1 - get search query
     const query = searchView.getQuery();
-    if (!query) return; // se não hover palavra na barra de pesquisa -> ignore
+    if (!query) return; // ignore if there is no word on search bar
 
     // 2 - render initial pagination buttons
     paginationView.render(model.state.search);
 
     // 3 - load search results
-    await model.loadSearchResults(query); // não retorna nada; apenas muda state
+    await model.loadSearchResults(query);
 
     // 4 - render results
     resultsView.render(model.getSearchResultsPage());
@@ -66,17 +62,16 @@ const controlPagination = function (goToPage) {
   paginationView.render(model.state.search);
 };
 
-// chamado quando usuário clica no botão "aumentar ou diminuir porção"
+// when user clicks on "increase or decrease portion" button
 const controlServings = function (newServings) {
   // update the recipe servings (in the state)
   model.updateServings(newServings);
 
   // update the recipe view
-  // recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
-// quando clicar no botão de bookmark
+// when user clicks on bookmark button
 const controlAddBookmark = function () {
   // 1 - add or remove bookmark
   if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
@@ -130,7 +125,7 @@ const init = function () {
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
-  paginationView.addHandlerClick(controlPagination); // inicia possibilidade de receber click
+  paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 init();

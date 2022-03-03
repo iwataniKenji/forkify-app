@@ -3,6 +3,15 @@ import icons from 'url:../../img/icons.svg';
 export default class View {
   _data;
 
+  /**
+   * Render the received object to the DOM
+   * @param {Object | Object[]} data The data to be rendered (e.g. recipe) 
+   * @param {boolean} [render=true] If false, create markup string instead of rendering to the DOM
+   * @returns {undefined | string} A markup is returned if render=false
+   * @this {Object} View instance
+   * @author Kenji Iwatani
+   * @todo Finish implementation 
+   */
   render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
@@ -20,19 +29,19 @@ export default class View {
     this._data = data;
     const newMarkup = this._generateMarkup();
 
-    const newDOM = document.createRange().createContextualFragment(newMarkup); // converte a string em dom virtual
-    const newElements = Array.from(newDOM.querySelectorAll('*')); // array de todos os elementos do dom virtual
-    const curElements = Array.from(this._parentElement.querySelectorAll('*')); // array de todos os elementos do dom
+    const newDOM = document.createRange().createContextualFragment(newMarkup); // string -> virtual DOM
+    const newElements = Array.from(newDOM.querySelectorAll('*')); // all arrays from virtual DOM 
+    const curElements = Array.from(this._parentElement.querySelectorAll('*')); // array of all DOM elements 
 
     newElements.forEach((newEl, i) => {
-      const curEl = curElements[i]; // guarda elemento original no mesmo índice
+      const curEl = curElements[i];
 
       // updates changed text
       if (
         !newEl.isEqualNode(curEl) &&
         newEl.firstChild?.nodeValue.trim() !== ''
       ) {
-        curEl.textContent = newEl.textContent; // se for diferente && se não for vazio -> guarda valor no dom original
+        curEl.textContent = newEl.textContent; // if different && not empty -> store value on DOM
       }
 
       if (!newEl.isEqualNode(curEl))
@@ -43,7 +52,7 @@ export default class View {
   }
 
   _clear() {
-    this._parentElement.innerHTML = ''; // limpa html
+    this._parentElement.innerHTML = '';
   }
 
   renderSpinner() {

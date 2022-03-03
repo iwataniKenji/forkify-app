@@ -33,8 +33,8 @@ class AddRecipeView extends View {
   addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
-      const dataArr = [...new FormData(this)]; // arrays separados [name of the field, value]
-      const data = Object.fromEntries(dataArr); // objeto único {key, value}
+      const dataArr = [...new FormData(this)]; // separated arrays [name of the field, value]
+      const data = Object.fromEntries(dataArr); // unique object {key, value}
       handler(data);
     });
   }

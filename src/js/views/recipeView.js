@@ -84,7 +84,9 @@ class RecipeView extends View {
           </div>
           <button class="btn--round btn--bookmark">
             <svg class="">
-              <use href="${icons}#icon-bookmark${this._data.bookmarked ? '-fill' : ''}"></use>
+              <use href="${icons}#icon-bookmark${
+      this._data.bookmarked ? '-fill' : ''
+    }"></use>
             </svg>
           </button>
         </div>
@@ -92,9 +94,7 @@ class RecipeView extends View {
         <div class="recipe__ingredients">
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
-          ${
-            this._data.ingredients.map(this._generateMarkupIngredient).join('') // todos os ingredientes que saírem de map viram 1 string ao invés de 1 array
-          }
+          ${this._data.ingredients.map(this._generateMarkupIngredient).join('')}
           </ul>
         </div>
 
@@ -138,4 +138,4 @@ class RecipeView extends View {
   }
 }
 
-export default new RecipeView(); // exporta uma cópia
+export default new RecipeView(); // export a copy

@@ -8,9 +8,7 @@ class PaginationView extends View {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--inline');
       if (!btn) return;
-
       const goToPage = +btn.dataset.goto;
-      console.log(goToPage);
       handler(goToPage);
     });
   }
@@ -21,7 +19,7 @@ class PaginationView extends View {
       this._data.results.length / this._data.resultsPerPage
     );
 
-    // page 1, and there are other pages -> botão de prosseguir
+    // page 1, and there are other pages -> next
     if (curPage === 1 && numPages > 1) {
       return `
       <button data-goto="${
@@ -35,7 +33,7 @@ class PaginationView extends View {
       `;
     }
 
-    // last page -> botão de voltar
+    // last page -> back
     if (curPage === numPages) {
       return `
       <button data-goto="${
@@ -49,7 +47,7 @@ class PaginationView extends View {
       `;
     }
 
-    // other page -> 2 botões
+    // other page -> back + next
     if (curPage < numPages) {
       return `
       <button data-goto="${
@@ -71,7 +69,7 @@ class PaginationView extends View {
       `;
     }
 
-    // page 1, and there are no other pages -> sem botão
+    // page 1, and there are no other pages -> no button
     return '';
   }
 }
