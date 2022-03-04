@@ -41,14 +41,14 @@ const controlSearchResults = async function () {
     const query = searchView.getQuery();
     if (!query) return; // ignore if there is no word on search bar
 
-    // 2 - render initial pagination buttons
-    paginationView.render(model.state.search);
-
-    // 3 - load search results
+    // 2 - load search results
     await model.loadSearchResults(query);
 
-    // 4 - render results
+    // 3 - render results
     resultsView.render(model.getSearchResultsPage());
+
+    // 4 - render initial pagination buttons
+    paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
   }
@@ -64,7 +64,7 @@ const controlPagination = function (goToPage) {
 
 // when user clicks on "increase or decrease portion" button
 const controlServings = function (newServings) {
-  // update the recipe servings (in the state)
+  // update the recipe servings (in state)
   model.updateServings(newServings);
 
   // update the recipe view

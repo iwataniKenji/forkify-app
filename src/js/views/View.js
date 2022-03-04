@@ -7,7 +7,7 @@ export default class View {
    * Render the received object to the DOM
    * @param {Object | Object[]} data The data to be rendered (e.g. recipe) 
    * @param {boolean} [render=true] If false, create markup string instead of rendering to the DOM
-   * @returns {undefined | string} A markup is returned if render=false
+   * @returns {undefined | string} A markup string is returned if render=false
    * @this {Object} View instance
    * @author Kenji Iwatani
    * @todo Finish implementation 
@@ -44,6 +44,7 @@ export default class View {
         curEl.textContent = newEl.textContent; // if different && not empty -> store value on DOM
       }
 
+      // update changed attributes
       if (!newEl.isEqualNode(curEl))
         Array.from(newEl.attributes).forEach(attr =>
           curEl.setAttribute(attr.name, attr.value)

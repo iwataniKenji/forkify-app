@@ -34,7 +34,7 @@ class PaginationView extends View {
     }
 
     // last page -> back
-    if (curPage === numPages) {
+    if (curPage === numPages && numPages > 1) {
       return `
       <button data-goto="${
         curPage - 1
