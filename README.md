@@ -79,7 +79,7 @@ $ npm start
 - [X] Updates recipe servings
 - [X] Bookmarks recipes
 - [X] Local storage usage
-- [X] Uploads new recipe input data
+- [X] Input validation on uploads 
 
 ---
 
