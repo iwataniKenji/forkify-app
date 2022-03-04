@@ -83,4 +83,4 @@ $ npm start
 - [x] Core-js
 - [x] Regenerator-runtime
 - [x] Fractional
-- [ ] Netlify
+- [x] Netlify
