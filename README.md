@@ -15,16 +15,21 @@
 </p>
 
 <h4 align="center">
-   🚧 FORKIFY project under construction 🚧
+   ✔️ FORKIFY project finished ✔️
 </h4>
 
 <H2 id="about">📙 About</H2>
 
-<!-- <p>Omnifood is an AI-powered food subscription for people who want to eat healthy 365 days per year. It's tailored to the customer's personal tastes and nutritional needs, and has more than 5,000 recipes that can work with any diet as well</p> -->
+<p>Forkify is a website with custom recipe uploads that has over 1,000,000 recipes included on a external API. It has features such as: adding your favorite dishes on bookmarks, changing servings to adapt to your demand and even adding your own recipes on the application.</p>
 <p>Originally created by <a href="https://github.com/jonasschmedtmann">Jonas Schmedtmann<a/> and made by Kenji Iwatani</p>
-<!-- <p>
-    <a href="https://omnifood-kenji.netlify.app/">Check website &rarr;</a>
-</p> -->
+<p>
+    <a href="https://forkify-kenji.netlify.app/">Check website &rarr;</a>
+</p>
+
+<section align="center">
+    <img alt="Forkify website overview" src="src/img/forkify-preview-1.gif"/>
+    <img alt="Forkify add recipe feature" src="src/img/forkify-preview-2.gif"/>
+</section>
 
 ---
 
@@ -83,4 +88,5 @@ $ npm start
 - [x] Core-js
 - [x] Regenerator-runtime
 - [x] Fractional
+- [x] Fracty
 - [x] Netlify
