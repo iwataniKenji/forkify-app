@@ -22,7 +22,7 @@
 <H2 id="about">📙 About</H2>
 
 <p>Forkify is a website with custom recipe uploads that has over 1,000,000 recipes included on a external API. It has features such as: adding your favorite dishes on bookmarks, changing servings to adapt to your demand and even adding your own recipes on the application.</p>
-<p>Originally created by <a href="https://github.com/jonasschmedtmann">Jonas Schmedtmann<a/> and made by Kenji Iwatani</p>
+<p>Originally created by <a href="https://github.com/jonasschmedtmann">Jonas Schmedtmann<a/> and made by <a href="https://www.linkedin.com/in/kleverson-kenji-iwatani/">Kenji Iwatani</a></p>
 <p>
     <h3><a href="https://forkify-kenji.netlify.app/">Check website &rarr;</a></h3>
 </p>
